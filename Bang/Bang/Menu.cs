@@ -16,5 +16,11 @@ namespace Bang
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Game game = new Game();
+            game.ShowDialog();
+        }
     }
 }

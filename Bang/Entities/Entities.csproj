@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Rols.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="DiceThrower.cs" />

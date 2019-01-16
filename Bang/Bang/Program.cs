@@ -15,9 +15,6 @@ namespace Bang
         [STAThread]
         static void Main()
         {
-            DiceThrower diceThrower = new DiceThrower();
-            diceThrower.Throw();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Menu());

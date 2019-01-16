@@ -20,7 +20,6 @@ namespace Entities
                 new Die(),
                 new Die(),
                 new Die(),
-                new Die(),
                 new Die()
             };
         }
@@ -29,6 +28,10 @@ namespace Entities
         // ¿Función?
         private void Check()
         {
+            this.DieList.ForEach((Die die) =>
+            {
+                //se checkea los estados
+            });
         }
     }
 }

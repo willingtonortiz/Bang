@@ -8,26 +8,29 @@ namespace Entities
 {
     public class Die
     {
-        private DieFace dieFace;
+        private DieFace Face { get; set; }
+        // Sep, pero se la sintáxis ahora será ponerlo en mayúscula
 
         public Die()
         {
-            this.dieFace = DieFace.Ninguno;
+            this.Face = DieFace.Ninguno;
         }
 
         public Die(DieFace dieFace)
         {
-            this.dieFace = dieFace;
+            this.Face = dieFace;
         }
 
         // Lanza el dado
-        public void Throw()
+        public DieFace Throw()
         {
             // Semilla para el número random
             Random random = new Random(DateTime.Now.Millisecond);
             Array values = Enum.GetValues(typeof(DieFace));
-            this.dieFace = (DieFace)values.GetValue(random.Next(6));
-            Console.WriteLine(this.dieFace);
+            this.Face = (DieFace)values.GetValue(random.Next(6));
+            Console.WriteLine(this.Face);
+            return this.Face;
+
         }
     }
 }

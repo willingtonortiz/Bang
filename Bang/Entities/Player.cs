@@ -28,7 +28,7 @@ namespace Entities
 
         }
 
-        public void ModifyLife()
+        public void ModifyLife(int )
         {
 
         }

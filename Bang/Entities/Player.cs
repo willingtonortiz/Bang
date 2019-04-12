@@ -13,8 +13,11 @@ namespace Entities
         public int Life { get; set; }
         public int Arrows { get; set; }
 
-        public Player()
+        public Player(Character Character, Rols rol)
         {
+            this.Character = Character;
+            this.Arrows = 0;
+            this.Rol = rol;
             this.Life = this.Character.MaxLife;
         }
 
@@ -28,7 +31,7 @@ namespace Entities
 
         }
 
-        public void ModifyLife(int )
+        public void ModifyLife(int a)
         {
 
         }

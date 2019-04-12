@@ -87,7 +87,6 @@
             this.imageDie3 = new Bang.custom_controls.DieButton();
             this.imageDie2 = new Bang.custom_controls.DieButton();
             this.imageDie1 = new Bang.custom_controls.DieButton();
-
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageArrows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageLife)).BeginInit();

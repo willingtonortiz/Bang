@@ -9,9 +9,9 @@ namespace Entities
     public class DiceThrower
     {
         private Dice dice;
-        public int moves { get; }
-        public int dynamite { get; }
-        public int arrows { get; }
+        public int moves { get; set; }
+        public int dynamite { get; set; }
+        public int arrows { get; set; }
 
         public DiceThrower()
         {

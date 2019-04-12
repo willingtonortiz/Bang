@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities;
-
+using Data;
 
 namespace Logic
 {
@@ -14,7 +14,7 @@ namespace Logic
         List<Player> Players;
         int turn;
         DiceThrower Dices;
-        bool Sheriff;
+        int Sheriff;
         short Outlaw;
         short Renegade;
         short Deputy;
@@ -23,14 +23,81 @@ namespace Logic
         public Play(int players)
         {
             this.RemainingArrows = 15;
+            this.RolsQuantity(players);
             this.Players = new List<Player>(players);
             this.DistributeCharacters();
             this.Dices = new DiceThrower();
         }
 
+        private void RolsQuantity(int players)
+        {
+            this.Sheriff = 1;
+            switch (players)
+            {
+                case 4:
+                    this.Renegade = 1;
+                    this.Outlaw = 2;
+                    this.Deputy = 0;
+                    break;
+                case 5:
+                    this.Renegade = 1;
+                    this.Outlaw = 2;
+                    this.Deputy = 1;
+                    break;
+                case 6:
+                    this.Renegade = 1;
+                    this.Outlaw = 3;
+                    this.Deputy = 1;
+                    break;
+                case 7:
+                    this.Renegade = 1;
+                    this.Outlaw = 3;
+                    this.Deputy = 2;
+                    break;
+                case 8:
+                    this.Renegade = 2;
+                    this.Outlaw = 3;
+                    this.Deputy = 2;
+                    break;
+            }
+        }
+
         private void DistributeCharacters()
         {
+            
+            List<Character> characters= CharacterList.getCharacters();
+            Array rols = Enum.GetValues(typeof(Rols));
+            Random random=new Random();
+            int tempSherrif=0,tempOutlaw=0,tempDeputy=0,tempRenegade=0;
+            for (int i = 0; i < this.Players.Capacity; ++i)
+            {
+                int rol= random.Next(4);
+                while((rol==0 && tempSherrif==1) || (rol==1 && this.Outlaw==tempOutlaw) || (rol==2 && this.Renegade==tempRenegade) || (rol==3 && this.Deputy==tempDeputy))
+                {
+                    rol++;
+                    if (rol == 3)
+                        rol = 0;
+                }
+                switch (rol)
+                {
+                    case 0:
+                        tempSherrif++;
+                        break;
+                    case 1:
+                        tempOutlaw++;
+                        break;
+                    case 2:
+                        tempRenegade++;
+                        break;
+                    case 3:
+                        tempDeputy++;
+                        break;
 
+                }
+                int indice=random.Next(characters.Capacity);
+                this.Players.Insert(i,new Player(characters.ElementAt<Character>(indice),(Rols)rols.GetValue(rol)));
+                characters.RemoveAt(indice);
+            }
         }
 
         public void Throw()
@@ -79,10 +146,11 @@ namespace Logic
 
         private bool EndGame()
         {
-            if (!this.Sheriff && this.Outlaw == 0)
+
+            if (this.Sheriff == 0)
                 return true;
 
-            if (!this.Sheriff)
+            if (this.Sheriff==0 && this.Outlaw == 0)
                 return true;
 
             if (this.Outlaw == 0 && this.Renegade==0)
@@ -95,7 +163,7 @@ namespace Logic
         {
             switch (this.Players.ElementAt<Player>(index).Rol)
             {
-                case Rols.RolA: Sheriff = false;
+                case Rols.RolA: Sheriff = 0;
                     break;
 
                 case Rols.RolB: this.Deputy--;

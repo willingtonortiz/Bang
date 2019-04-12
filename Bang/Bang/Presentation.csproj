@@ -103,6 +103,10 @@
       <Project>{335775ca-69c6-41fa-ab62-469294eea70f}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{80b1c287-cc72-4694-b531-847d249e517e}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

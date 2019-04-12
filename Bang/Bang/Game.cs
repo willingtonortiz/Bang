@@ -7,17 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Logic;
 
 namespace Bang
 {
     public partial class Game : Form
     {
+        Play play;
+
         public Game()
         {
             InitializeComponent();
 
             ImageInitialization();
             CharactersLoad();
+            this.play = new Play(8);
         }
 
         private void ImageInitialization()
